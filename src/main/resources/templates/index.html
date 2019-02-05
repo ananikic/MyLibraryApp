@@ -1,0 +1,29 @@
+
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"/>
+    <title>My Library</title>
+</head>
+<body>
+<div>
+
+        <th:block th:replace="fragments/navbar"></th:block>
+
+
+    <div class="jumbotron col-sm-11 m-auto">
+        <h1>My Library Application</h1>
+        <hr/>
+        <p>Choose your next book for free!</p>
+    </div>
+    <footer>
+        <th:block th:replace="fragments/footer"></th:block>
+    </footer>
+</div>
+
+
+
+
+</body>
+</html>

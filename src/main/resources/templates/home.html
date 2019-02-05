@@ -1,0 +1,31 @@
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<th:block xmlns:th="http://www.w3.org/1999/xhtml">
+    <th:block th:include="fragments/navbar"></th:block>
+    <title>My Library - Home</title>
+
+    <div class="jumbotron">
+        <h1 th:text="|Hello, ${username}|"></h1>
+    </div>
+
+
+</th:block>
+
+<th:block th:if="${dateExpired}" th:each="title,iter : ${titles}">
+    <div class="alert alert-danger" role="alert">
+    <h4 class="alert-heading">Important Message!</h4>
+    <p> You didn't return "<td scope ="col" th:text="${title}"></td>" on time</p>
+    <hr/>
+    <p class="mb-0">Please, come to MyLibrary and return the book, as soon as you can.</p>
+</div>
+
+</th:block>
+<footer>
+    <th:block th:include="fragments/footer"></th:block>
+</footer>
+
+
+
+</html>
+

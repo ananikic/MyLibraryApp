@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org" >
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html" charset="utf-8" />
+    <title>My Library - Add books</title>
+</head>
+
+<th:block th:include="fragments/navbar"></th:block>
+
+<div class="jumbotron col-sm-11 m-auto">
+    <h1>Add a new book!</h1>
+    <hr/>
+    <form th:action="@{/books/add}" method="post" th:object="${bookBindingModel}">
+        <th:block th:include="fragments/book-form"></th:block>
+    </form>
+    <script>
+        $("#submitButton").text("Add!");
+        $("#submitButton").addClass("btn btn-success");
+    </script>
+
+    <footer>
+        <th:block th:include="fragments/footer"></th:block>
+    </footer>
+</div>
+
+</html>
+
+

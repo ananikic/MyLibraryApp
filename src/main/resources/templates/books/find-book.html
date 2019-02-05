@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+
+<th:block>
+    <meta http-equiv="Content-Type" content="text/html" charset="utf-8" />
+<body>
+
+<form class="form-inline my-2 my-lg-0">
+
+    <div class="container">
+    <div class="row">
+        <form>
+        <div class="col-lg-5 offset-lg-3 col-sm-2 offset-sm-2 col-5">
+            <div class="input-group" id="adv-search">
+                <label for="contains"></label>
+                <input class="form-control form-control-search"  type="text" id="contains"  name="contains" placeholder="Search for books..." />
+                <div class="input-group-btn">
+                    <div class="btn-group" role="group">
+                        <div class="dropdown dropdown-lg">
+                            <button stype="button" class="btn btn-lg-3 btn-secondary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            </button>
+                            <div class="dropdown-menu dropdown-menu-right" role="menu">
+                                    <div class="form-group">
+                                        <label for="title">Title</label>
+                                        <input type="text" class="form-control col-12" id="title" placeholder="Enter book title" name="title"/>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="author">Author</label>
+                                        <input type="text" class="form-control col-12" id="author" placeholder="Enter author name" name="authorName" />
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="date_before">Before</label>
+                                        <input type="date" class="form-control col-12" id="date_before" placeholder="Enter before date" name="dateBefore"/>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="date_after">After</label>
+                                        <input type="date" class="form-control col-12" id="date_after" placeholder="Enter before date" name="dateAfter"/>
+                                    </div>
+                                    <div class="form-group text-center">
+                                        <button type="submit" class="btn btn-primary">Search</button>
+                                    </div>
+
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-primary"><span class="fa fa-search" aria-hidden="true"></span></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </form>
+
+    </div>
+    </div>
+
+</form>
+
+</body>
+
+</th:block>
+</html>

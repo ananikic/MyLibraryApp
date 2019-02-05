@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<th:block th:include="fragments/navbar"></th:block>
+<title>My library - Users</title>
+<div class="jumbotron col-sm-11 m-auto">
+    <h1>All Users!</h1>
+    <hr/>
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Username</th>
+            <th scope="col">Email</th>
+            <th scope="col">Roles</th>
+        </tr>
+        </thead>
+        <tbody>
+        <th:block th:each="user,iter : ${users}">
+            <tr>
+                <td scope="col" th:text="${iter.index + 1}"></td>
+                <td scope="col" th:text="${user.username}"></td>
+                <td scope="col" th:text="${user.email}"></td>
+                <td scope="col" th:text="${user.roles}"></td>
+                <td scope="col">
+                    <th:block th:unless="${#strings.contains(user.roles, 'ROOT')}">
+                        <a th:href="@{/users/edit/{id}(id=${user.id})}" class="btn btn-info">Edit</a>
+                    </th:block>
+                </td>
+            </tr>
+        </th:block>
+        </tbody>
+    </table>
+    <footer>
+        <th:block th:include="fragments/footer"></th:block>
+    </footer>
+</div>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<th:block th:include="fragments/navbar"></th:block>
+<title>My Library - Log in</title>
+<div class="jumbotron col-sm-11 m-auto">
+    <h1>Log in</h1>
+    <br/>
+    <form method="post" th:action="@{/login}">
+        <div class="form-group">
+            <label for="username">Username</label>
+            <input type="text" class="form-control" id="username" placeholder="Username" required="required" name="username"/>
+        </div>
+        <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" class="form-control" id="password" placeholder="Password" required="required" name="password"/>
+        </div>
+        <div class="form-check">
+            <input type="checkbox" class="form-check-input" id="rememberMe" name="rememberMe"/>
+            <label class="form-check-label" for="rememberMe">Remember Me</label>
+        </div>
+        <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
+        <button type="submit" class="btn btn-primary">Log in</button>
+    </form>
+
+</div>
+<footer>
+    <th:block th:include="fragments/footer"></th:block>
+</footer>
+<body>
+
+</body>
+</html>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+    <title>My Library - Delete Book</title>
+
+<th:block th:include="fragments/navbar"></th:block>
+<div class="jumbotron col-sm-11 m-auto">
+    <h1>Delete Book - <td th:text = "${bookBindingModel.title}"></td> by <td th:text = "${bookBindingModel.authorName}"></td> </h1>
+    <hr/>
+    <form th:action="@{/books/delete/{id}(id=${bookBindingModel.id})}" method="post">
+        <div class="form-group row">
+            <div class="col-sm-10">
+                <button type="submit" id="submitButton"></button>
+            </div>
+        </div>
+    </form>
+    <script>
+
+        $("#submitButton").text("Delete!");
+        $("#submitButton").addClass("btn btn-danger");
+
+    </script>
+    <footer>
+        <th:block th:include="fragments/footer"></th:block>
+    </footer>
+</div>
+
+</html>

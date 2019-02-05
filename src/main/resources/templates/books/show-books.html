@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"/>
+    <link rel="stylesheet" href="/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1.slim.min.js/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
+</head>
+<th:block th:include="fragments/navbar"></th:block>
+
+
+<div class="jumbotron col-sm-11 m-auto">
+    <h1>Books!</h1>
+    <th:block  th:include="books/find-book"></th:block>
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Title</th>
+            <th scope="col">Author</th>
+            <th scope="col">Released On</th>
+            <th scope="col">Available</th>
+            <a sec:authorize="hasAuthority('ADMIN')">
+                <th scope="col">Taken by</th>
+            </a>
+
+        </tr>
+        </thead>
+        <tbody>
+        <th:block th:each="book,iter : ${books}">
+            <tr>
+                <td scope="col" th:text="${iter.index + 1}"></td>
+                <td scope="col" th:text="${book.title}"></td>
+                <td scope="col" th:text="${book.authorName}"></td>
+                <td scope="col" th:text="${book.releaseDate} ? ${#temporals.format(book.releaseDate, 'dd-MM-yyyy')}"></td>
+                <td scope="col" th:text="${book.isAvailable}"></td>
+                <td scope="col"><a  sec:authorize="hasAuthority('ADMIN')" th:text="${book.user}"></a></td>
+                <td scope="col"><a sec:authorize="hasAuthority('MODERATOR')" class="btn btn-info"
+                                   th:href="@{/books/edit/{id}(id=${book.id})}" th:text="Edit"></a>
+                </td>
+                <td scope="col"><a sec:authorize="hasAuthority('MODERATOR')" class="btn btn-danger"
+                                   th:href="@{/books/delete/{id}(id=${book.id})}"
+                                   th:text="Delete"></a></td>
+                <th:block th:if="${book.isAvailable}">
+                <td scope="col"><a sec:authorize="hasAuthority('USER')" class="btn btn-success"
+                                   th:href="@{/books/take/{id}(id=${book.id})}"
+                                   th:text="Take"  > </a></td>
+                </th:block>
+            </tr>
+        </th:block>
+
+
+
+        </tbody>
+
+    </table>
+
+
+</div>
+
+<footer>
+    <th:block th:include="fragments/footer"></th:block>
+</footer>
+
+</html>
+
+
+<!--th:if="${book.isAvailable}"-->

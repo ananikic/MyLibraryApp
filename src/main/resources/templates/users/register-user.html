@@ -1,0 +1,40 @@
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<header>
+<th:block th:include="fragments/navbar"></th:block>
+</header>
+<title>My Library - Register</title>
+<th:block th:fragment="register-user" th:object="${user}">
+<div class="jumbotron col-sm-11 m-auto">
+    <h1>Register</h1>
+    <br/>
+    <form method="post" th:action="@{/register}">
+        <div class="form-group">
+            <label for="username">Username</label>
+            <input type="text" class="form-control" id="username" placeholder="Username" required="required" name="username"/>
+        </div>
+        <div class="form-group">
+            <label for="email">Email address</label>
+            <input type="email" class="form-control" id="email" placeholder="Email" required="required" name="email"
+                   th:styleappend="${#fields.hasErrors('email')} ? 'border-color: red'"/>
+            <small style="color: red" th:each="error : ${#fields.errors('email')}" th:text="${error}"> </small>
+        </div>
+        <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" class="form-control" id="password" placeholder="Password" required="required" name="password"
+            th:styleappend="${#fields.hasErrors('password')} ? 'border-color: red'"/>
+            <small style="color: red" th:each="error : ${#fields.errors('password')}" th:text="${error}"> </small>
+        </div>
+        <div class="form-group">
+            <label for="confirmPassword">Confirm Password</label>
+            <input type="password" class="form-control" id="confirmPassword" placeholder="Confirm Password" required="required" name="confirmPassword"/>
+        </div>
+        <button type="submit" class="btn btn-primary">Register</button>
+    </form>
+</div>
+</th:block>
+
+<footer>
+    <th:block th:include="fragments/footer"></th:block>
+</footer>
+</html>
